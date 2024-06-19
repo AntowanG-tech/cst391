@@ -40,8 +40,9 @@ GREETING=Hello from the environment file. Be kind to the environment!
 
 |Link|Browser Image|Postman Image|
 |--|--|--|
-|https://localhost:5000/albums|Row1Column2|Row1Column3|
-|https://localhost:5000/artists|Row2Column2|Row2Column3|
-|https://localhost:5000/albums?albumId=7|Row3Column2|Row3Column3|
+|https://localhost:5000/albums|[Browser](https://github.com/AntowanG-tech/cst391/blob/main/activities/activity1/a1%20screenshots/A1%20browser%20albums.png)|[Postman](https://github.com/AntowanG-tech/cst391/blob/main/activities/activity1/a1%20screenshots/A1%20postman%20albums.png)|
+|https://localhost:5000/artists|[Browser](https://github.com/AntowanG-tech/cst391/blob/main/activities/activity1/a1%20screenshots/A1%20browser%20artists%20endpoint.png)|[Postman](https://github.com/AntowanG-tech/cst391/blob/main/activities/activity1/a1%20screenshots/A1%20postman%20artists.png)|
+|https://localhost:5000/albums?albumId=7|[Browser](https://github.com/AntowanG-tech/cst391/blob/main/activities/activity1/a1%20screenshots/A1%20browser%20album7%20endpoint.png)|[Postman](https://github.com/AntowanG-tech/cst391/blob/main/activities/activity1/a1%20screenshots/A1%20postman%20album7.png)|
 
 - This is the System Output displaying the SQL variables, database connection and the GET method being called
+![SysOutput](https://github.com/AntowanG-tech/cst391/blob/main/activities/activity1/a1%20screenshots/sys%20output%20get%20method%20called%20sql%20variables.png)
