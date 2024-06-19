@@ -16,6 +16,10 @@ Activity 1 is an example of a Web Application interfacing to a MySQL Database.
 ## Recordings
 - The following link is a screencast demonstration of the application. **Submission requirement**.
 
+[Screencast on Loom](https://www.loom.com/share/906a57f674e5444aa83e9a434ecf2770?sid=20b2f866-8ac3-407d-9734-9d9182875ef6)
+
+---
+
 ## Enviornment Variables (~/git/cst391/activities/activity1/MusicAPI/.env)
 - The following are the variables defined for the MySQL Database
 > #MySQL Settings
@@ -32,7 +36,6 @@ NODE_ENV=development
 GREETING=Hello from the environment file. Be kind to the environment!
 
 ---
-## Database Relational Diagram
 
 ## Test Links
 - The following are test links to validate the application is executing and communicating with the MySQL Database
