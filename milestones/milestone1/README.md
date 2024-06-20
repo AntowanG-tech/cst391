@@ -1,6 +1,6 @@
 # Milestone 1
 
-- This is Milestone 1. The purpose of this assignment is to create the base documentation for the proect ahead. 
+- This is Milestone 1. The purpose of this assignment is to create the base documentation for the project ahead. 
 
 ## Introduction
 - The application in development is the beginnings of a book tracker to account for the books on a “read” and “to be read” listing. The user will be able to create, read (display), update, and delete entries from these lists. The goal is to provide a user experience that is efficient in their book tracking needs. There will be two versions of this application modeled via Angular and React JS frameworks. It will not be browser specific. The user will benefit from the REST API while experiencing the Express backend technology. Attributes such as author, release date, and ratings will be available to the user in each entry.
