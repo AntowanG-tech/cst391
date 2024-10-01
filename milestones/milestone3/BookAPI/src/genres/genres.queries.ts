@@ -1,12 +1,16 @@
 export const genreQueries = {
 	readGenres:
-		`select id as albumId, title as title, artist as artist, description as description, year as year, image as image from music.albums`,
+		`select genreID as ID, genreDesc as Genre`,
 	readGenresByAuthor:
-		`select id as albumId, title as title, artist as artist, description as description, year as year, image as image from music.albums
-	   where music.albums.artist = ?`,
+		`select author.authorID as ID, author.firstName as firstName, author.lastName as lastName, genre.genreDesc as Genre from library.books
+		join author on books.authorID=author.authorID
+		join genre on genre.genreDesc=books.genreDesc
+	   where library.author.authorID = ?`,
 	readGenresByAuthorSearch:
-		`select id as albumId, title as title, artist as artist, description as description, year as year, image as image from music.albums
-	   where music.albums.artist like ?`,
+		`select author.authorID as ID, author.firstName as firstName, author.lastName as lastName, genre.genreDesc as Genre from library.books
+		join author on books.authorID=author.authorID
+		join genre on genre.genreDesc=books.genreDesc
+	   where library.author.lastName like ?`,
 	readGenresByDescriptionSearch:
 		`select id as albumId, title as title, artist as artist, description as description, year as year, image as image from music.albums
 	   where music.albums.description like ?`,
@@ -14,9 +18,9 @@ export const genreQueries = {
 		`select id as albumId, title as title, artist as artist, description as description, year as year, image as image from music.albums
 	   where music.albums.id = ?`,
 	createGenre:
-		`insert into albums(title, artist, description, year, image) values(?,?,?,?,?)`,
+		`insert into genre(genreDesc) values(?)`,
 	updateGenre:
-		`update music.albums set title=?, artist=?, year=?, image=?, description=? where id = ?`,
+		`update library.genre set title=?, artist=?, year=?, image=?, description=? where id = ?`,
 	deleteGenre:
 		`delete from music.albums where id = ?`,
 }
