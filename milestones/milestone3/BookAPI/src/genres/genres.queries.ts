@@ -12,16 +12,16 @@ export const genreQueries = {
 		join genre on genre.genreDesc=books.genreDesc
 	   where library.author.lastName like ?`,
 	readGenresByDescriptionSearch:
-		`select id as albumId, title as title, artist as artist, description as description, year as year, image as image from music.albums
-	   where music.albums.description like ?`,
+		`select bookID as bookID, title as title, authorID as authorID, genreDesc as genre from library.books
+	   where library.books.genreDesc like ?`,
 	readGenresByGenreId:
-		`select id as albumId, title as title, artist as artist, description as description, year as year, image as image from music.albums
-	   where music.albums.id = ?`,
+		`select bookID as bookID, title as title, authorID as authorID, publishedDate as publishedDate, ISBN as ISBN, price as price, genreDesc as genreDesc from library.books
+	   where library.books.bookID = ?`,
 	createGenre:
 		`insert into genre(genreDesc) values(?)`,
 	updateGenre:
-		`update library.genre set title=?, artist=?, year=?, image=?, description=? where id = ?`,
+		`update library.genre set genreDesc=? where genreID = ?`,
 	deleteGenre:
-		`delete from music.albums where id = ?`,
+		`delete from library.genre where genreID = ?`,
 }
 
