@@ -3,7 +3,7 @@ import * as AuthorsController from './authors.controllers';
 
 const router = Router();
 router
-    .route('/artists')
+    .route('/authors')
     .get(AuthorsController.readAuthors);
 
 export default router;

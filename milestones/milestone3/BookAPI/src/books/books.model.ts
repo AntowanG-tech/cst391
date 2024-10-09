@@ -1,7 +1,10 @@
 export interface Book {
-    bookId: number;
+    bookID: number;
     title: string;
-    number: number;
-    video: string;
-    lyrics: string;
+    authorID: number;
+    publishedDate: Date;
+    isbn: string;
+    price: number;
+    genreDesc: string;
+
 }
