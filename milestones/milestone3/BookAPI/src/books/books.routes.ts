@@ -6,4 +6,32 @@ router
     .route('/books')
     .get(BooksController.readBooks);
 
+    router
+    .route('/books/:author')
+    .get(BooksController.readBooksByAuthor);
+
+router
+    .route('/books/search/author/:search')
+    .get(BooksController.readBooksByAuthorSearch);
+
+router
+    .route('/books/search/genreDesc/:search')
+    .get(BooksController.readBooksByGenreSearch);
+
+
+router
+    .route('/books')
+    .post(BooksController.createBook);
+
+
+router
+    .route('/books')
+    .put(BooksController.updateBook);
+
+
+
+router
+    .route('/books/:bookID')
+    .delete(BooksController.deleteBook);
+
 export default router;

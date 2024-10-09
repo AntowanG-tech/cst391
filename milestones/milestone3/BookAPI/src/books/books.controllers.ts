@@ -16,7 +16,6 @@ export const readBooks: RequestHandler = async (req: Request, res: Response) => 
         } else {
             books = await BooksDao.readBooksByBookID(bookID);
         }
-        await readGenres(books, res)
         res.status(200).json(
             books
         );
@@ -31,7 +30,6 @@ export const readBooks: RequestHandler = async (req: Request, res: Response) => 
 export const readBooksByAuthor: RequestHandler = async (req: Request, res: Response) => {
     try {
         const books = await BooksDao.readBooksByAuthor(req.params.author);
-        await readGenres(books, res);
 
         res.status(200).json(books);
     } catch (error) {
@@ -47,8 +45,6 @@ export const readBooksByAuthorSearch: RequestHandler = async (req: Request, res:
         console.log('search', req.params.search);
         const books = await BooksDao.readBooksByAuthorSearch('%' + req.params.search + '%');
 
-        await readGenres(books, res);
-
         res.status(200).json(books);
     } catch (error) {
         console.error('[books.controller][readBooks][Error] ', error);
@@ -62,8 +58,6 @@ export const readBooksByGenreSearch: RequestHandler = async (req: Request, res: 
     try {
         console.log('search', req.params.search);
         const books = await BooksDao.readBooksByGenreSearch('%' + req.params.search + '%');
-
-        await readGenres(books, res);
 
         res.status(200).json(books);
     } catch (error) {
@@ -101,23 +95,12 @@ export const createBook: RequestHandler = async (req: Request, res: Response) =>
     }
 };
 
-export const updateBooks: RequestHandler = async (req: Request, res: Response) => {
+export const updateBook: RequestHandler = async (req: Request, res: Response) => {
     try {
         const okPacket: OkPacket = await BooksDao.updateBook(req.body);
 
         console.log('req.body', req.body);
         console.log('book', okPacket);
-
-        req.body.tracks.forEach(async (genre: Genre, index: number) => {
-            try {
-                await BooksDao.updateGenre(genre);
-            } catch (error) {
-                console.error('[books.controller][updateBook][Error] ', error);
-                res.status(500).json({
-                    message: 'There was an error when updating book genre'
-                });
-            }
-        });
 
         res.status(200).json(okPacket);
     } catch (error) {
@@ -130,8 +113,8 @@ export const updateBooks: RequestHandler = async (req: Request, res: Response) =
 
 export const deleteBook: RequestHandler = async (req: Request, res: Response) => {
     try {
-        let bookID = parseInt(req.params.albumId as string);
-        console.log('bookID', bookID;
+        let bookID = parseInt(req.params.bookID as string);
+        console.log('bookID', bookID)
 
         if (!Number.isNaN(bookID)) {
             const response = await BooksDao.deleteBook(bookID);
@@ -147,22 +130,4 @@ export const deleteBook: RequestHandler = async (req: Request, res: Response) =>
             message: 'There was an error when deleting books'
         });
     }
-};
-
-async function readTracks(books: Book[], res: Response<any, Record<string, any>>) {
-
-    for (let i = 0; i < books.length; i++) {
-
-        try {
-            const genres = await GenreDao.readGenres(books[i].bookID);
-            books[i].genreDesc = genres;
-
-        } catch (error) {
-            console.error('[books.controller][readGenres][Error] ', error);
-            res.status(500).json({
-                message: 'There was an error when fetching albums genres'
-            });
-        }
-    }
-
 };

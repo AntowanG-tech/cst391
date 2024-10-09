@@ -3,12 +3,12 @@ import { execute } from "../services/mysql.connector";
 import { Book } from "./books.model";
 import { bookQueries } from './books.queries';
 
-export const readAlbums = async () => {
+export const readBooks = async () => {
     return execute<Book[]>(bookQueries.readBooks, []);
 };
 
-export const readBooksByAuthor = async (artistName: string) => {
-    return execute<Book[]>(bookQueries.readBooksbyAuthor, [artistName]);
+export const readBooksByAuthor = async (authorID: number) => {
+    return execute<Book[]>(bookQueries.readBooksbyAuthor, [authorID]);
 };
 
 export const readBooksByAuthorSearch = async (search: string) => {
