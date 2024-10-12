@@ -2,8 +2,8 @@
 //imports express libraries
 import express, { Request, Response } from 'express';
 import dotenv from "dotenv";
-import albumsRouter from './albums/albums.routes';
-import artistsRouter from './artists/artists.routes';
+import booksRouter from './books/books.routes';
+import authorsRouter from './authors/authors.routes';
 import logger from './middleware/logger.middleware';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -41,7 +41,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 
-app.use('/', [albumsRouter, artistsRouter]);
+app.use('/', [booksRouter, authorsRouter]);
 
 //This method binds the app with the specified port(3000) to listen for any connections.
 app.listen(port, () => {
