@@ -28,8 +28,14 @@ export const readBooks: RequestHandler = async (req: Request, res: Response) => 
 };
 
 export const readBooksByAuthor: RequestHandler = async (req: Request, res: Response) => {
+    const authorID = parseInt(req.params.authorID, 10); // ensure authorID is an integer
+
+    if (isNaN(authorID)) {
+        return res.status(404).json({ error: 'invalid author ID'});
+    }
+    
     try {
-        const books = await BooksDao.readBooksByAuthor(req.params.author);
+        const books = await BooksDao.readBooksByAuthor(authorID);
 
         res.status(200).json(books);
     } catch (error) {

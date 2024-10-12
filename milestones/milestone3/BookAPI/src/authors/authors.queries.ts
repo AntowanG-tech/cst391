@@ -1,4 +1,4 @@
 export const authorQueries = {
     readAuthors:
-        `select distinct lastName as author from books.authors`
+        `select distinct author as author from books.author`
 }
