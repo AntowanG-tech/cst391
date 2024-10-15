@@ -1,25 +1,25 @@
 import { createPool, Pool } from "mysql";
 let pool: Pool | null = null;
 
-const initializeMySqlConnector = () => {
+export const initializeMySqlConnector = () => {
     try {
 
         console.log(`MY_SQL_DB_HOST:${process.env.MY_SQL_DB_HOST}`);  // 127.0.0.1
         console.log(`MY_SQL_DB_USER:${process.env.MY_SQL_DB_USER}`);  // root
         console.log(`MY_SQL_DB_PASSWORD:${process.env.MY_SQL_DB_PASSWORD}`);  // root
         console.log(`MY_SQL_DB_PORT:${process.env.MY_SQL_DB_PORT}`);  // 3306
-        console.log(`MY_SQL_DB_DATABASE:${process.env.MY_SQL_DB_DATABASE}`);  // music
+        console.log(`MY_SQL_DB_DATABASE:${process.env.MY_SQL_DB_DATABASE}`);  // library
         console.log(`MY_SQL_DB_CONNECTION_LIMIT:${process.env.MY_SQL_DB_CONNECTION_LIMIT}`);  // 10
 
         pool = createPool({
             connectionLimit:
                 parseInt(process.env.MY_SQL_DB_CONNECTION_LIMIT != undefined ? process.env.MY_SQL_DB_CONNECTION_LIMIT : ""),
             port:
-                parseInt(process.env.MY_SQL_DB_PORT != undefined ? process.env.MY_SQL_DB_PORT : ""),
-            host: process.env.MY_SQL_DB_HOST,
-            user: process.env.MY_SQL_DB_USER,
-            password: process.env.MY_SQL_DB_PASSWORD,
-            database: process.env.MY_SQL_DB_DATABASE,
+                parseInt(process.env.MY_SQL_DB_PORT || "3306"),
+            host: process.env.MY_SQL_DB_HOST || 'localhost',
+            user: process.env.MY_SQL_DB_USER || 'root',
+            password: process.env.MY_SQL_DB_PASSWORD || 'root',
+            database: process.env.MY_SQL_DB_DATABASE || 'library',
         });
 
         console.debug('MySql Adapter Pool generated successfully');
@@ -27,7 +27,7 @@ const initializeMySqlConnector = () => {
 
         pool.getConnection((err, connection) => {
             if (err) {
-                console.log('error MySql failed to connect');
+                console.log('error MySql failed to connect:', err);
                 throw new Error('not able to connect to database');
             } else {
                 console.log('connection made');

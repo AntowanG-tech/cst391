@@ -7,10 +7,13 @@ import authorsRouter from './authors/authors.routes';
 import logger from './middleware/logger.middleware';
 import cors from 'cors';
 import helmet from 'helmet';
+import { initializeMySqlConnector } from './services/mysql.connector';
 
 
 dotenv.config();
 
+// Call the initialize function
+initializeMySqlConnector();
 
 //Creates an express app and assigns it to app variable
 const app = express();
