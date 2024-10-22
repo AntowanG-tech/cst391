@@ -6,4 +6,9 @@ router
     .route('/authors')
     .get(AuthorsController.readAuthors);
 
+
+router
+    .route('/authors/search')
+    .get(AuthorsController.readAuthorsBySearch);
+
 export default router;
