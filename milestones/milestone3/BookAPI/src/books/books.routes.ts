@@ -9,6 +9,10 @@ router
 router
     .route('/books/:author')
     .get(BooksController.readBooksByAuthor);
+
+router
+    .route('/books/search/author/:search')
+    .get(BooksController.readBooksByAuthorSearch);
     
 router
     .route('/books')

@@ -4,6 +4,7 @@ import { Genre } from '../genres/genres.model';
 import * as BooksDao from './books.dao';
 import * as GenreDao from '../genres/genres.dao';
 import { OkPacket} from 'mysql';
+import { readAuthors } from '../authors/aruthors.dao';
 
 export const readBooks: RequestHandler = async (req: Request, res: Response) => {
     try {
@@ -41,6 +42,22 @@ export const readBooksByAuthor: RequestHandler = async (req: Request, res: Respo
         console.error('[BooksController][readBooksByAuthor][Error] ', error);
         res.status(500).json({
             message: 'There was an error fetching books'
+        });
+    }
+};
+
+export const readBooksByAuthorSearch: RequestHandler = async (req: Request, res: Response) => {
+    try {
+        console.log('search', req.params.search);
+        const books = await BooksDao.readBooksByAuthorSearch('%' + req.params.search + '%');
+
+        //await readAuthors(books, res);
+
+        res.status(200).json(books);
+    } catch (error) {
+        console.error('[books.controller][readBooks][Error] ', error);
+        res.status(500).json({
+            message: 'There was an error when fetching books'
         });
     }
 };

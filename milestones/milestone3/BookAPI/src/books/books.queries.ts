@@ -1,10 +1,10 @@
 export const bookQueries = {
     readBooks:
 		`select bookID as bookID, title as title, authorID as authorID, publishedDate as published, ISBN as isbn, price as price, genreDesc as genre from library.books`,
-	readBooksbyAuthor:
+	readBooksByAuthor:
 		`select bookID as bookID, title as title, author as author, publishedDate as publishedDate, ISBN as isbn, price as price, genreDesc as genre from library.books
 		where library.books.author = ?`,
-	readBooksbyAuthorSearch:
+	readBooksByAuthorSearch:
 		`select bookID as bookID, title as title, author as author, publishedDate as publishedDate, ISBN as isbn, price as price, genreDesc as genre from library.books
 		where library.books.author like ?`, 
 	readBooksByBookID:
