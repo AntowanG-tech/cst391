@@ -7,18 +7,9 @@ export const readBooks = async () => {
     return execute<Book[]>(bookQueries.readBooks, []);
 };
 
-export const readBooksByAuthor = async (authorID: number) => {
-    return execute<Book[]>(bookQueries.readBooksbyAuthor, [authorID]);
-};
-
-export const readBooksByAuthorSearch = async (search: string) => {
-    console.log('search param', search);
-    return execute<Book[]>(bookQueries.readBooksByAuthorSearch, [search]);
-};
-
-export const readBooksByGenreSearch = async (search: string) => {
-    console.log('search param', search);
-    return execute<Book[]>(bookQueries.readBooksByGenreSearch, [search]);
+// Function to read books by a specific author
+export const readBooksByAuthor = async (author: string): Promise<Book[]> => {
+    return execute<Book[]>(bookQueries.readBooksbyAuthor, ['%${author}%']);  // Pass the author name as a parameter
 };
 
 export const readBooksByBookID = async (bookID: number) => {

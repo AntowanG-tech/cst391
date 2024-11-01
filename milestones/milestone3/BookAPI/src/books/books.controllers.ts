@@ -28,48 +28,19 @@ export const readBooks: RequestHandler = async (req: Request, res: Response) => 
 };
 
 export const readBooksByAuthor: RequestHandler = async (req: Request, res: Response) => {
-    const authorID = parseInt(req.params.authorID, 10); // ensure authorID is an integer
-
-    if (isNaN(authorID)) {
-        return res.status(404).json({ error: 'invalid author ID'});
-    }
-    
     try {
-        const books = await BooksDao.readBooksByAuthor(authorID);
+        const author = req.params.author;  // Accessing the "author" parameter from the URL
+        const books = await BooksDao.readBooksByAuthor(author);
 
-        res.status(200).json(books);
+        if (books.length === 0) {
+            res.status(404).json({ message: 'No books found for this author' });
+        } else {
+            res.status(200).json(books);
+        }
     } catch (error) {
-        console.error('[books.controller][readBooks][Error] ', error);
+        console.error('[BooksController][readBooksByAuthor][Error] ', error);
         res.status(500).json({
-            message: 'There was an error when fectching books'
-        });
-    }
-};
-
-export const readBooksByAuthorSearch: RequestHandler = async (req: Request, res: Response) => {
-    try {
-        console.log('search', req.params.search);
-        const books = await BooksDao.readBooksByAuthorSearch('%' + req.params.search + '%');
-
-        res.status(200).json(books);
-    } catch (error) {
-        console.error('[books.controller][readBooks][Error] ', error);
-        res.status(500).json({
-            message: 'There was an error when fetching books'
-        });
-    }
-};
-
-export const readBooksByGenreSearch: RequestHandler = async (req: Request, res: Response) => {
-    try {
-        console.log('search', req.params.search);
-        const books = await BooksDao.readBooksByGenreSearch('%' + req.params.search + '%');
-
-        res.status(200).json(books);
-    } catch (error) {
-        console.error('[books.controller][readBooks][Error] ', error);
-        res.status(500).json({
-            message: 'There was an error when fetching books'
+            message: 'There was an error fetching books'
         });
     }
 };

@@ -6,19 +6,10 @@ router
     .route('/books')
     .get(BooksController.readBooks);
 
-    router
+router
     .route('/books/:author')
     .get(BooksController.readBooksByAuthor);
-
-router
-    .route('/books/search/author/:search')
-    .get(BooksController.readBooksByAuthorSearch);
-
-router
-    .route('/books/search/genreDesc/:search')
-    .get(BooksController.readBooksByGenreSearch);
-
-
+    
 router
     .route('/books')
     .post(BooksController.createBook);
